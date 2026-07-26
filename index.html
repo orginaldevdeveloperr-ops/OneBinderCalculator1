@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Binder Calculator - Smart Android Calculator & Age Calculator App</title>
+    
+    <!-- Meta Descriptions & SEO Keywords -->
+    <meta name="description" content="One Binder Calculator is a modern, fast, and accurate Android calculator app featuring basic arithmetic calculations and exact age calculation. Built for students, professionals, and daily utility.">
+    <meta name="keywords" content="One Binder Calculator, Android Calculator App, Basic Calculator, Age Calculator, Calculator App, Free Android Calculator, Smart Calculator, Daily Utility App, Fast Calculator, Accurate Calculator">
+    <meta name="author" content="BinderTeam">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://onebindercalculator.blogspot.com/">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://onebindercalculator.blogspot.com/">
+    <meta property="og:title" content="One Binder Calculator - Smart Android Calculator & Age Calculator App">
+    <meta property="og:description" content="Perform basic arithmetic and exact age calculations with ease. Smart, fast, and accurate daily utility app for Android.">
+    <meta property="og:image" content="https://play-lh.googleusercontent.com/proxy/placeholder-og-image.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="One Binder Calculator - Smart Android Calculator">
+    <meta name="twitter:description" content="Accurate arithmetic & exact age calculation app for Android. Simple, fast, and privacy-focused.">
+    <meta name="twitter:image" content="https://play-lh.googleusercontent.com/proxy/placeholder-twitter-image.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            navy: '#0F172A',
+                            slate: '#64748B',
+                            light: '#F8FAFC',
+                            cyan: '#06B6D4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Glassmorphism & Visual Aesthetics */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(37, 99, 235, 0.35);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.35);
+        }
+        .floating-math {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-math-delayed {
+            animation: float 8s ease-in-out 2s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: radial-gradient(circle at 50% 0%, #1E293B 0%, #0F172A 100%);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "One Binder Calculator",
+      "operatingSystem": "ANDROID",
+      "applicationCategory": "UtilitiesApplication",
+      "ratingValue": "5.0",
+      "ratingCount": "120",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "url": "https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator",
+      "description": "Smart, accurate, and lightweight Android calculator app with basic operations and an exact age calculator."
+    }
+    </script>
+</head>
+<body class="bg-brand-navy text-slate-100 font-sans antialiased selection:bg-brand-blue selection:text-white overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-brand-cyan flex items-center justify-center text-white text-xl font-bold shadow-lg group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold">1B</i>
+                </div>
+                <span class="text-xl font-bold text-white tracking-wide">One Binder <span class="text-brand-cyan">Calculator</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-brand-cyan transition-colors">About</a>
+                <a href="#features" class="hover:text-brand-cyan transition-colors">Features</a>
+                <a href="#preview" class="hover:text-brand-cyan transition-colors">Preview</a>
+                <a href="#why-us" class="hover:text-brand-cyan transition-colors">Why Choose Us</a>
+                <a href="#faq" class="hover:text-brand-cyan transition-colors">FAQ</a>
+                <a href="#contact" class="hover:text-brand-cyan transition-colors">Contact</a>
+            </nav>
+
+            <a href="https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 bg-brand-blue hover:bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all btn-glow shadow-lg">
+                <i class="fa-brands fa-google-play"></i> Get on Play Store
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 text-2xl focus:outline-none" aria-label="Toggle navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-navy/95 border-b border-slate-800 px-6 py-4 flex-col gap-4 text-slate-300 font-medium">
+            <a href="#about" class="mobile-link py-2 border-b border-slate-800">About</a>
+            <a href="#features" class="mobile-link py-2 border-b border-slate-800">Features</a>
+            <a href="#preview" class="mobile-link py-2 border-b border-slate-800">Preview</a>
+            <a href="#why-us" class="mobile-link py-2 border-b border-slate-800">Why Choose Us</a>
+            <a href="#faq" class="mobile-link py-2 border-b border-slate-800">FAQ</a>
+            <a href="#contact" class="mobile-link py-2">Contact</a>
+            <a href="https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator" target="_blank" rel="noopener" class="mt-2 w-full text-center bg-brand-blue text-white py-3 rounded-xl font-semibold">
+                Download App
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden gradient-bg">
+        <!-- Light Particles / Glowing Background Orbs -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-blue/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-cyan/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <!-- Floating Symbols -->
+        <div class="absolute top-36 left-[12%] text-brand-blue/30 text-5xl font-bold floating-math pointer-events-none">+</div>
+        <div class="absolute top-1/2 right-[10%] text-brand-cyan/30 text-6xl font-bold floating-math-delayed pointer-events-none">÷</div>
+        <div class="absolute bottom-24 left-[15%] text-slate-600/30 text-4xl font-bold floating-math pointer-events-none">×</div>
+        <div class="absolute top-1/3 right-[25%] text-brand-blue/20 text-5xl font-bold floating-math-delayed pointer-events-none">−</div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-brand-cyan text-xs sm:text-sm font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span> Smart Calculator • Accurate Results • Easy Age Calculation
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                    Simplifying Daily Calculations for <span class="gradient-text">Everyone</span>.
+                </h1>
+                <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl">
+                    Experience speed, accuracy, and clean UI with **One Binder Calculator**. From basic daily arithmetic to precise age calculation, manage all your numeric tasks effortlessly.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator" target="_blank" rel="noopener" class="bg-brand-blue hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 btn-glow transition-all shadow-xl text-base">
+                        <i class="fa-brands fa-google-play text-xl"></i> Download on Google Play
+                    </a>
+                    <a href="#about" class="glass-card hover:bg-white/10 text-slate-200 px-8 py-4 rounded-xl font-semibold transition-all text-base border border-slate-700">
+                        📖 Learn More
+                    </a>
+                </div>
+
+                <div class="mt-10 flex items-center gap-6 text-slate-400 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check-circle text-brand-cyan"></i> Android Optimized
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check-circle text-brand-cyan"></i> Privacy Focused
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check-circle text-brand-cyan"></i> Instant Results
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Phone Mockup -->
+            <div class="relative flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative w-72 sm:w-80 h-[580px] bg-slate-900 rounded-[48px] p-4 border-4 border-slate-700 shadow-2xl glow-effect">
+                    <!-- Screen Container -->
+                    <div class="w-full h-full bg-slate-950 rounded-[36px] overflow-hidden flex flex-col justify-between p-5 border border-slate-800 relative">
+                        <!-- Camera Notch -->
+                        <div class="w-24 h-4 bg-slate-900 rounded-full mx-auto mb-2"></div>
+                        
+                        <!-- UI Display -->
+                        <div class="text-right my-auto">
+                            <div class="text-slate-500 text-sm mb-1">1,250 + 850</div>
+                            <div class="text-4xl font-extrabold text-white">2,100</div>
+                        </div>
+
+                        <!-- Keypad Mockup -->
+                        <div class="grid grid-cols-4 gap-3 mt-auto">
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-cyan">C</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-cyan">( )</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-cyan">%</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-blue">÷</div>
+                            
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">7</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">8</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">9</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-blue">×</div>
+
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">4</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">5</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">6</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-blue">−</div>
+
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">1</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">2</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">3</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold text-brand-blue">+</div>
+
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">0</div>
+                            <div class="glass-card p-3 rounded-xl text-center font-bold">.</div>
+                            <div class="col-span-2 bg-brand-blue rounded-xl p-3 text-center font-bold text-white shadow-lg">=</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                    Designed for Speed, Accuracy, and Simplicity
+                </h2>
+                <p class="text-slate-400 text-lg">
+                    **One Binder Calculator** combines essential calculation tools into a single, beautifully crafted Android application. Engineered for students, working professionals, families, and everyday users.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl hover:border-brand-blue/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Basic Arithmetic</h3>
+                    <p class="text-slate-400">Perform lightning-fast addition, subtraction, multiplication, and division effortlessly with zero lag.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:border-brand-cyan/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-cake-candles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Exact Age Calculator</h3>
+                    <p class="text-slate-400">Calculate exact age down to years, months, and days directly from any birth date instantly.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:border-brand-blue/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Intuitive Interface</h3>
+                    <p class="text-slate-400">Minimalist layout focused entirely on clarity and readability, eliminating unnecessary visual clutter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Features Section -->
+    <section id="features" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-brand-cyan font-semibold text-sm tracking-widest uppercase">Premium Capabilities</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+                    Everything You Need in One Smart App
+                </h2>
+                <p class="text-slate-400">Powerful feature set wrapped in a smooth, responsive, and reliable utility package.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature Cards -->
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up">
+                    <span class="text-3xl mb-4 block">🧮</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Basic Calculator</h3>
+                    <p class="text-slate-400 text-sm">Everyday mathematical operations designed with large, touch-friendly keypads.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <span class="text-3xl mb-4 block">🎂</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Age Calculator</h3>
+                    <p class="text-slate-400 text-sm">Quickly determine precise age, upcoming birthday countdowns, and date intervals.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <span class="text-3xl mb-4 block">⚡</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Fast Calculations</h3>
+                    <p class="text-slate-400 text-sm">Optimized calculation algorithms delivering immediate results upon keypress.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <span class="text-3xl mb-4 block">📱</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Android Optimized</h3>
+                    <p class="text-slate-400 text-sm">Built specifically to leverage native Android performance with low resource usage.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="400">
+                    <span class="text-3xl mb-4 block">🔒</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Privacy Focused</h3>
+                    <p class="text-slate-400 text-sm">No invasive tracking or background permission requests. Your data stays yours.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="500">
+                    <span class="text-3xl mb-4 block">🎯</span>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Simple Interface</h3>
+                    <p class="text-slate-400 text-sm">Clean layout ensuring hassle-free experience for users of all age groups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Preview Showcase -->
+    <section id="preview" class="py-24 bg-slate-900/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Interactive Feature Showcase</h2>
+                <p class="text-slate-400">Get a glance at the dual functionality offered inside One Binder Calculator.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Preview 1: Standard Calculator -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-700/80 glow-effect" data-aos="zoom-in-right">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-bold text-lg text-white">Standard Mode</span>
+                        <span class="bg-brand-blue/20 text-brand-blue text-xs px-3 py-1 rounded-full font-semibold">Arithmetic</span>
+                    </div>
+                    <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-right">
+                        <div class="text-slate-400 text-sm mb-1">25 × 12 + 150</div>
+                        <div class="text-3xl font-extrabold text-white">450</div>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-6">
+                        Seamlessly handles mathematical operators including addition, subtraction, multiplication, and division with error prevention logic.
+                    </p>
+                </div>
+
+                <!-- Preview 2: Age Calculator -->
+                <div class="glass-card p-8 rounded-3xl border border-slate-700/80 glow-cyan" data-aos="zoom-in-left">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-bold text-lg text-white">Age Calculator Mode</span>
+                        <span class="bg-brand-cyan/20 text-brand-cyan text-xs px-3 py-1 rounded-full font-semibold">Date Tool</span>
+                    </div>
+                    <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                        <div class="text-slate-400 text-xs mb-2">DOB: 15 Aug 1998 • Today: 26 Jul 2026</div>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <div class="text-2xl font-bold text-brand-cyan">27</div>
+                                <div class="text-[10px] text-slate-400 uppercase">Years</div>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <div class="text-2xl font-bold text-brand-cyan">11</div>
+                                <div class="text-[10px] text-slate-400 uppercase">Months</div>
+                            </div>
+                            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <div class="text-2xl font-bold text-brand-cyan">11</div>
+                                <div class="text-[10px] text-slate-400 uppercase">Days</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-6">
+                        Select date of birth and instantly discover complete age breakdown alongside detailed chronological summary.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="why-us" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Why Choose One Binder Calculator?</h2>
+                <p class="text-slate-400">Created to deliver a reliable, daily utility app experience without bloat.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-blue" data-aos="fade-up">
+                    <i class="fa-solid fa-bolt text-brand-blue text-2xl mb-4"></i>
+                    <h3 class="text-lg font-bold text-white mb-2">Fast Performance</h3>
+                    <p class="text-slate-400 text-sm">Launches instantly with zero load time or delays.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-cyan" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-bullseye text-brand-cyan text-2xl mb-4"></i>
+                    <h3 class="text-lg font-bold text-white mb-2">Accurate Results</h3>
+                    <p class="text-slate-400 text-sm">Tested calculation algorithms ensuring total numerical precision.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-blue" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-layer-group text-brand-blue text-2xl mb-4"></i>
+                    <h3 class="text-lg font-bold text-white mb-2">Minimal Design</h3>
+                    <p class="text-slate-400 text-sm">Modern look inspired by Google and Microsoft design systems.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-cyan" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-feather text-brand-cyan text-2xl mb-4"></i>
+                    <h3 class="text-lg font-bold text-white mb-2">Lightweight App</h3>
+                    <p class="text-slate-400 text-sm">Takes minimal device storage space and conserves battery life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-gradient-to-r from-brand-blue/20 via-slate-900 to-brand-cyan/20 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up">
+                    <div class="text-3xl sm:text-5xl font-extrabold text-white counter" data-target="10000">0</div>
+                    <p class="text-brand-cyan font-semibold mt-2 text-sm sm:text-base">+ Downloads</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl sm:text-5xl font-extrabold text-white"><span class="counter" data-target="100">0</span>%</div>
+                    <p class="text-brand-cyan font-semibold mt-2 text-sm sm:text-base">Calculation Accuracy</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl sm:text-5xl font-extrabold text-white">24/7</div>
+                    <p class="text-brand-cyan font-semibold mt-2 text-sm sm:text-base">Available Offline</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl sm:text-5xl font-extrabold text-amber-400">★★★★★</div>
+                    <p class="text-brand-cyan font-semibold mt-2 text-sm sm:text-base">User Friendly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-10 sm:p-16 rounded-3xl relative overflow-hidden text-center border border-slate-700 glow-effect" data-aos="zoom-in">
+                <div class="relative z-10">
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6">Download One Binder Calculator Today</h2>
+                    <p class="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
+                        Join thousands of users enjoying accurate calculations and smooth age calculation on their Android smartphones.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator" target="_blank" rel="noopener" class="bg-brand-blue hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 btn-glow transition-all shadow-xl text-lg">
+                            <i class="fa-brands fa-google-play text-2xl"></i> Get it on Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-24 bg-slate-900/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Frequently Asked Questions</h2>
+                <p class="text-slate-400">Got questions? We've got answers.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-white text-lg focus:outline-none">
+                        <span>What is One Binder Calculator?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm">
+                        One Binder Calculator is a free Android application designed to provide everyday math calculations along with a dedicated Age Calculator feature in a clean, intuitive interface.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-white text-lg focus:outline-none">
+                        <span>How does the Age Calculator work?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm">
+                        Simply select your date of birth, and the app instantly computes your exact age in years, months, and days relative to the current date.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-white text-lg focus:outline-none">
+                        <span>Is the app free to download and use?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm">
+                        Yes, One Binder Calculator is completely free to download from the Google Play Store.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-white text-lg focus:outline-none">
+                        <span>Does it work offline without internet?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm">
+                        Yes! All arithmetic and age calculation features function 100% offline without requiring an active internet connection.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-white text-lg focus:outline-none">
+                        <span>How accurate are the calculations?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm">
+                        Calculations use standard mathematical libraries ensuring 100% precision for arithmetic operations and date algorithms.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Support Section -->
+    <section id="contact" class="py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800" data-aos="fade-up">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-white mb-2">Get in Touch</h2>
+                    <p class="text-slate-400 text-sm">Have feedback or need assistance? Reach out to our support team.</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Thank you for contacting One Binder Calculator support!');">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-slate-300 text-xs font-semibold uppercase mb-2">Your Name</label>
+                            <input type="text" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 text-xs font-semibold uppercase mb-2">Email Address</label>
+                            <input type="email" required placeholder="crowdevelopment60@gmail.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-slate-300 text-xs font-semibold uppercase mb-2">Message</label>
+                        <textarea rows="4" required placeholder="Write your message here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-blue hover:bg-blue-600 text-white py-4 rounded-xl font-bold transition-all btn-glow shadow-lg">
+                        Send Support Message
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-slate-800/80 flex flex-wrap justify-between items-center gap-4 text-xs text-slate-400">
+                    <div>
+                        <i class="fa-solid fa-envelope text-brand-cyan mr-2"></i> Developer: <span class="text-slate-200">Crow Developer</span>
+                    </div>
+                    <a href="https://onebindercalculator.blogspot.com/2026/03/privacy-policy-of-one-binder-calculator.html" target="_blank" rel="noopener" class="text-brand-cyan hover:underline">
+                        Read Privacy Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-brand-blue flex items-center justify-center text-white font-bold">1B</div>
+                        <span class="text-lg font-bold text-white">One Binder Calculator</span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-sm">
+                        A modern, fast, and privacy-focused Android calculator application designed for daily productivity.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-brand-cyan transition-colors">About App</a></li>
+                        <li><a href="#features" class="hover:text-brand-cyan transition-colors">Features</a></li>
+                        <li><a href="#faq" class="hover:text-brand-cyan transition-colors">FAQ</a></li>
+                        <li><a href="https://onebindercalculator.blogspot.com/2026/03/privacy-policy-of-one-binder-calculator.html" target="_blank" rel="noopener" class="hover:text-brand-cyan transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="https://play.google.com/store/apps/details?id=com.BinderTeam.OneBinderCalculator" target="_blank" rel="noopener" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-google-play mr-1"></i> Google Play Store</a></li>
+                        <li><span class="text-slate-500">Android 5.0+ Supported</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2026 One Binder Calculator. All rights reserved.</p>
+                <div class="flex gap-4 text-slate-400 text-base">
+                    <a href="#" aria-label="Share on Twitter" class="hover:text-brand-cyan"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Share on Facebook" class="hover:text-brand-cyan"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="Share on LinkedIn" class="hover:text-brand-cyan"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS Animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // FAQ Accordion logic
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Counter Animation on Scroll logic
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const statsSection = document.querySelector('.counter');
+            
+            if (statsSection && scrollPos > statsSection.offsetTop && !animated) {
+                animated = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 1500;
+                    const step = Math.ceil(target / (duration / 16));
+
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.innerText = current.toLocaleString();
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target.toLocaleString();
+                        }
+                    };
+                    updateCounter();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
